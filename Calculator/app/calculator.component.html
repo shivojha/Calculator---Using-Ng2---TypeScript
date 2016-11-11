@@ -1,0 +1,27 @@
+﻿<form>
+    <div class="calculatorContainer">
+        <div class="calculator center-block">
+            <div>
+                <p  class="alert-danger" [hidden]="!errorMessage">{{errorMessage}}</p>
+            </div>
+
+            <div class="row center-block">
+
+                <input type="text" class="col-md-12 form-control text-right"  name="result" value="{{mathExpression.expression}}" />
+
+            </div>
+
+            <div class="row" *ngFor="let row of calcKeysLayout">
+                <div *ngFor="let col of row">
+                    <div class="col-md-{{12/row.length}}">
+                        <input type="button" class="btn btn-primary" name="calcKey" (click)="onKeySelection(col);" [value]="col" />
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+ 

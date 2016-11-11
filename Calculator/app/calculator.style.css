@@ -1,0 +1,36 @@
+﻿
+.calculatorContainer {
+    width: 35%;
+    background-color: black;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.calculator {
+    /*width: 50%;
+    height: 50%;
+    background-color: black;
+    vertical-align: central;*/
+
+    width:90%; padding-top:20px;padding-bottom:20px;
+    
+    
+}
+
+input[type="button"] {
+    padding: 5px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.operator {
+    background-color:coral;
+  }
+
+.number {
+    background-color: darkgray;
+  }
+
+.equalsign {
+    background-color:lightcoral;
+  }
