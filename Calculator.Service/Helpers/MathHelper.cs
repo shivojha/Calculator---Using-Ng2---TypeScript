@@ -25,7 +25,7 @@ namespace Calculator.Service.Helpers
                     case "-":
                     case "/":
                     case "*":
-                        expression.Expression = AppendArithmaticOperator(mathExpression); break;
+                        expression.Expression = AppendOrReplaceArithmaticOperator(mathExpression); break;
                     case ".":
                         expression.Expression = AppendDecimal(expression.Expression); break;
                     case "0":
@@ -78,14 +78,27 @@ namespace Calculator.Service.Helpers
             return string.Empty;
         }
 
-        private static string AppendArithmaticOperator(MathExpression expression)
+        private static string AppendOrReplaceArithmaticOperator(MathExpression expression)
         {
-            return CanAddArithmaticOperator(expression) ? string.Format("{0}{1}", expression.Expression, expression.Key) : expression.Expression;
+            return
+
+                CanAddArithmaticOperator(expression) ?
+                                    string.Format("{0}{1}", expression.Expression, expression.Key) : ReplaceOldOperatorWithNew(expression);
+                
+                
+        }
+
+        private static string ReplaceOldOperatorWithNew(MathExpression expression)
+        {
+            return string.Format("{0}{1}", expression.Expression.Substring(0, expression.Expression.Length - 1), expression.Key);
         }
 
         private static bool CanAddArithmaticOperator(MathExpression expression)
         {
-            return !expression.Expression.EndsWith(expression.Key);
+            return !(expression.Expression.EndsWith("+")
+                || expression.Expression.EndsWith("-")
+                || expression.Expression.EndsWith("/")
+                || expression.Expression.EndsWith("*"));
         }
 
         private static string AppendDecimal(string expression)
